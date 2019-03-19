@@ -33,14 +33,14 @@ class UserStories extends Component {
     }
 
     addStory = (story) => {
-        axios.post('http://localhost:8080/api/story', story)
+        axios.post('http://10.42.2.206:8080/api/story', story)
         .then(json=>{
             this.getStories();
         })
     }
 
     updateStory = (story) => {
-        axios.put('http://localhost:8080/api/story', story)
+        axios.put('http://10.42.2.206:8080/api/story', story)
         .then(json=>{
             this.getStories();
         })

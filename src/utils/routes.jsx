@@ -6,6 +6,7 @@ import Teams from '../views/teams';
 import Members from '../views/members';
 import Home from '../views/home';
 import UserStories from '../views/userStories';
+import Roles from '../views/roles';
 
 const Routes = () => {
     return (
@@ -15,6 +16,7 @@ const Routes = () => {
             <Route path="/teams" component={Teams} />
             <Route path="/members" component={Members} />
             <Route path="/userStories" component={UserStories} />
+            <Route path="/roles" component={Roles} />
           </div>
         </Router>
     );

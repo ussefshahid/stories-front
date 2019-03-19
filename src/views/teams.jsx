@@ -28,21 +28,21 @@ class Teams extends Component {
     }
 
     deleteTeam(id){
-        axios.delete('http://localhost:8080/api/team/'+id)
+        axios.delete('http://10.42.2.206:8080/api/team/'+id)
             .then(json => {
                 this.getTeams();
             });
     }
 
     addTeam = (team) => {
-        axios.post('http://localhost:8080/api/team', team)
+        axios.post('http://10.42.2.206:8080/api/team', team)
         .then(json=>{
             this.getTeams();
         });
     }
 
     updateTeam = (team) => {
-        axios.put('http://localhost:8080/api/team', team)
+        axios.put('http://10.42.2.206:8080/api/team', team)
             .then(json=>{
                 this.getTeams();
             });

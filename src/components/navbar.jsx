@@ -11,7 +11,7 @@ const NavbarPage = () => {
                 <Nav.Link href="/home">Home</Nav.Link>
                 <Nav.Link href="/teams">Teams</Nav.Link>
                 <Nav.Link href="/userStories">User stories</Nav.Link>
-                <Nav.Link href="/members">Membres</Nav.Link>
+                <Nav.Link href="/roles">Roles</Nav.Link>
                 <Nav.Link href="#link">Sprints</Nav.Link>
                 <NavDropdown title="Settings" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#action/3.1">Item 1</NavDropdown.Item>
