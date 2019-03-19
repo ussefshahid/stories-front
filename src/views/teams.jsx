@@ -6,6 +6,7 @@ import {TeamModalUpdate, TeamModalAdd} from '../components/team/TeamModal';
 import TeamCard from '../components/team/TeamCard';
 import TeamSearchForm from '../components/team/TeamSearchForm';
 import CustomJumbotron from '../components/CustomJumbotron';
+import swal from 'sweetalert';
 
 class Teams extends Component {
     state = { 
@@ -30,21 +31,21 @@ class Teams extends Component {
         axios.delete('http://localhost:8080/api/team/'+id)
             .then(json => {
                 this.getTeams();
-            })
+            });
     }
 
     addTeam = (team) => {
         axios.post('http://localhost:8080/api/team', team)
         .then(json=>{
             this.getTeams();
-        })
+        });
     }
 
     updateTeam = (team) => {
         axios.put('http://localhost:8080/api/team', team)
             .then(json=>{
                 this.getTeams();
-            })
+            });
     }
 
     searchTeams = (name) => {
@@ -55,7 +56,7 @@ class Teams extends Component {
                 this.setState({
                     teamsList: json.data
                 })
-            })
+            });
         }
     }
 
@@ -86,8 +87,23 @@ class Teams extends Component {
     }
 
     handleDelete = (teamID) => {
-        if(!window.confirm('Are you sure to delete this item?')) return;
-        this.deleteTeam(teamID);
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this item!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+                this.deleteTeam(teamID);
+                swal("Poof! Your item has been deleted!", {
+                icon: "success",
+              });
+            } else {
+                swal("Your item is safe!");
+            }
+          });
     }
 
     handleClose = () => {

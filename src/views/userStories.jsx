@@ -6,6 +6,7 @@ import CustomJumbotron from '../components/CustomJumbotron';
 import StoriesSearchForm from '../components/stories/StoriesSearchForm';
 import StoryCard from '../components/stories/StoryCard';
 import { StoryModalUpdate, StoryModalAdd } from '../components/stories/StoryModal';
+import swal from 'sweetalert';
 
 class UserStories extends Component {
     state = { 
@@ -46,7 +47,7 @@ class UserStories extends Component {
     }
 
     deleteStory(id){
-        axios.delete('http://localhost:8080/api/story/'+id)
+        axios.delete('http://10.42.2.206:8080/api/story/'+id)
             .then(json => {
                 this.getStories();
             })
@@ -101,8 +102,23 @@ class UserStories extends Component {
     }
 
     handleDelete = (StoryID) => {
-        if(!window.confirm('Are you sure to delete this item?')) return;
-        this.deleteStory(StoryID);
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this item!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+                this.deleteStory(StoryID);
+                swal("Poof! Your item has been deleted!", {
+                icon: "success",
+              });
+            } else {
+                swal("Your item is safe!");
+            }
+          });
     }
 
     handleClose = () => {
