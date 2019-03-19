@@ -1,7 +1,7 @@
 import React from 'react';
 import {Jumbotron, Badge} from 'react-bootstrap';
 
-const TeamJumbotron = (props) => {
+const CustomJumbotron = (props) => {
     const {name, length} = props;
 
     return (
@@ -13,4 +13,4 @@ const TeamJumbotron = (props) => {
     );
 }
 
-export default TeamJumbotron;
+export default CustomJumbotron;

@@ -31,3 +31,16 @@
     transform: rotate(360deg);
   }
 }
+
+.floatRight{
+  float: right;
+}
+
+.centerIt{
+  text-align: center;
+}
+
+.cardTitle{
+  font-size: 18px;
+  color: lightslategray;
+}

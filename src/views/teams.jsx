@@ -5,7 +5,7 @@ import {Row, Button} from 'react-bootstrap';
 import {TeamModalUpdate, TeamModalAdd} from '../components/team/TeamModal';
 import TeamCard from '../components/team/TeamCard';
 import TeamSearchForm from '../components/team/TeamSearchForm';
-import TeamJumbotron from '../components/team/TeamJumbotron';
+import CustomJumbotron from '../components/CustomJumbotron';
 
 class Teams extends Component {
     state = { 
@@ -120,7 +120,7 @@ class Teams extends Component {
         return ( 
             <React.Fragment>
                 <BCrumb name="Teams" />
-                <TeamJumbotron name="Teams" length={teamsList.length} />
+                <CustomJumbotron name="Teams" length={teamsList.length} />
                 <hr/>
                 <Button onClick={() => this.handleShow(ADD)} variant="primary" size="lg" block>Add team</Button>
                 <TeamSearchForm handleSearchChange={this.handleSearchChange} />
