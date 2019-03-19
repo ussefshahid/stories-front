@@ -1,9 +1,11 @@
 import React from 'react';
+import '../App.css';
 
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import Teams from './teams';
-import Members from './members';
-import Home from './home';
+import Teams from '../views/teams';
+import Members from '../views/members';
+import Home from '../views/home';
+import UserStories from '../views/userStories';
 
 const Routes = () => {
     return (
@@ -12,6 +14,7 @@ const Routes = () => {
             <Route path="/home" component={Home} />
             <Route path="/teams" component={Teams} />
             <Route path="/members" component={Members} />
+            <Route path="/userStories" component={UserStories} />
           </div>
         </Router>
     );
