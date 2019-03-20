@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import BCrumb from '../components/bcrumb';
-import {Row, Button} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import {TeamModalUpdate, TeamModalAdd} from '../components/team/TeamModal';
-import TeamCard from '../components/team/TeamCard';
 import TeamSearchForm from '../components/team/TeamSearchForm';
 import CustomJumbotron from '../components/CustomJumbotron';
 import swal from 'sweetalert';
+import ListTeams from '../components/team/ListTeams';
 
 class Teams extends Component {
     state = { 
@@ -140,11 +140,7 @@ class Teams extends Component {
                 <hr/>
                 <Button onClick={() => this.handleShow(ADD)} variant="primary" size="lg" block>Add team</Button>
                 <TeamSearchForm handleSearchChange={this.handleSearchChange} />
-                <Row>
-                    {teamsList.map(team => (
-                        <TeamCard key={team.id} team={team} handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
-                    ))}
-                </Row>
+                <ListTeams teamsList={teamsList} handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
                 <TeamModalUpdate 
                     showModalUpdate={this.state.showModalUpdate} handleClose={this.handleClose}
                     handleOnChangeUpdate={this.handleOnChangeUpdate} updateTeam={this.state.updateTeamObj}

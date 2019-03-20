@@ -6,12 +6,12 @@ const RoleCard = (props) => {
 
     return (
         <Card bg="light" key={role.id} style={{ width: '18rem' }} className="m-2">
-            <Card.Header>Role ID: {role.id}</Card.Header>
+            <Card.Header><label className="floatRight">ID° {role.id}</label></Card.Header>
             <Card.Body>
                 <Card.Title className="centerIt cardTitle"> {role.name}</Card.Title>
                 <hr/>
                 <Button onClick={() => handleEdit(role)} variant="outline-primary">Edit</Button>
-                <Button style={{float: 'right'}} onClick={() => handleDelete(role.id)} variant="outline-danger">Delete</Button>
+                <Button className="floatRight" onClick={() => handleDelete(role.id)} variant="outline-danger">Delete</Button>
             </Card.Body>
         </Card>
     );

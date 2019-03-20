@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import BCrumb from '../components/bcrumb';
 import CustomJumbotron from '../components/CustomJumbotron';
-import {Row, Button} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import swal from 'sweetalert';
 import axios from 'axios';
-import RoleCard from '../components/role/RoleCard';
 import RoleSearchForm from '../components/role/RoleSearchForm';
+import ListRoles from '../components/role/ListRoles';
+import { RoleModalUpdate, RoleModalAdd } from '../components/role/RoleModal';
 
 class Roles extends Component {
     state = { 
@@ -131,7 +132,7 @@ class Roles extends Component {
     }
 
     render() { 
-        const {UPDATE, ADD, rolesList} = this.state;
+        const {ADD, UPDATE, rolesList} = this.state;
 
         return ( 
             <React.Fragment>
@@ -140,11 +141,17 @@ class Roles extends Component {
                 <hr/>
                 <Button onClick={() => this.handleShow(ADD)} variant="primary" size="lg" block>Add Role</Button>
                 <RoleSearchForm handleSearchChange={this.handleSearchChange} />
-                <Row>
-                    {rolesList.map(role => (
-                        <RoleCard key={role.id} role={role} handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
-                    ))}
-                </Row>
+                <ListRoles rolesList={rolesList} handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
+                <RoleModalUpdate 
+                    showModalUpdate={this.state.showModalUpdate} handleClose={this.handleClose}
+                    handleOnChangeUpdate={this.handleOnChangeUpdate} updateRole={this.state.updateRoleObj}
+                    handleSaveEdit={this.handleSaveEdit} UPDATE={UPDATE}
+                />
+                <RoleModalAdd 
+                    showModalAdd={this.state.showModalAdd} handleClose={this.handleClose}
+                    handleOnChangeAdd={this.handleOnChangeAdd} 
+                    handleSaveAdd={this.handleSaveAdd} ADD={ADD}
+                />
             </React.Fragment>
         );
     }

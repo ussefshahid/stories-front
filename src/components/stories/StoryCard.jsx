@@ -6,7 +6,7 @@ const StoryCard = (props) => {
 
     return (
         <Card bg="light" key={story.jiraKey} style={{ width: '18rem' }} className="m-2">
-            <Card.Header>Story ID: {story.jiraKey}</Card.Header>
+            <Card.Header><label className="floatRight">ID° {story.jiraKey}</label></Card.Header>
             <Card.Body>
                 <Card.Title className="centerIt cardTitle"> {story.title}</Card.Title>
                 <Card.Text>

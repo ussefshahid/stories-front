@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import BCrumb from '../components/bcrumb';
-import {Row, Button} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import CustomJumbotron from '../components/CustomJumbotron';
 import StoriesSearchForm from '../components/stories/StoriesSearchForm';
-import StoryCard from '../components/stories/StoryCard';
 import { StoryModalUpdate, StoryModalAdd } from '../components/stories/StoryModal';
 import swal from 'sweetalert';
+import ListStories from '../components/stories/ListStories';
 
 class UserStories extends Component {
     state = { 
@@ -141,11 +141,7 @@ class UserStories extends Component {
                 <hr/>
                 <Button onClick={() => this.handleShow(ADD)} variant="primary" size="lg" block>Add a story</Button>
                 <StoriesSearchForm handleSearchChange={this.handleSearchChange} />
-                <Row>
-                    {storiesList.map(story => (
-                        <StoryCard key={story.jiraKey} story={story} handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
-                    ))}
-                </Row>
+                <ListStories storiesList={storiesList} handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
                 <StoryModalUpdate updateStory={this.state.updateStory} showModalUpdate={this.state.showModalUpdate}
                     handleSaveEdit={this.handleSaveEdit} handleClose={this.handleClose} 
                     handleOnChangeUpdate={this.handleOnChangeUpdate} 
