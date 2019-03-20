@@ -14,9 +14,9 @@ class Teams extends Component {
         ADD: 'add',
         teamsList: [],
         showModalUpdate: false,
-        updateTeamObj: {},
+        updateTeamObj: {name: ''},
         showModalAdd: false,
-        addedTeam: {}
+        addedTeam: {name: ''}
     }
     getTeams(){
         axios.get('http://10.42.2.206:8080/api/teams')
@@ -148,7 +148,7 @@ class Teams extends Component {
                 />
                 <TeamModalAdd 
                     showModalAdd={this.state.showModalAdd} handleClose={this.handleClose}
-                    handleOnChangeAdd={this.handleOnChangeAdd} 
+                    handleOnChangeAdd={this.handleOnChangeAdd} addedTeam={this.state.addedTeam}
                     handleSaveAdd={this.handleSaveAdd} ADD={ADD}
                 />
             </React.Fragment>

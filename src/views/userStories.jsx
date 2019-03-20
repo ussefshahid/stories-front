@@ -4,7 +4,7 @@ import BCrumb from '../components/bcrumb';
 import {Button} from 'react-bootstrap';
 import CustomJumbotron from '../components/CustomJumbotron';
 import StoriesSearchForm from '../components/stories/StoriesSearchForm';
-import { StoryModalUpdate, StoryModalAdd } from '../components/stories/StoryModal';
+import { StoryModalUpdate, StoryModalAdd, StoryModalDetails } from '../components/stories/StoryModal';
 import swal from 'sweetalert';
 import ListStories from '../components/stories/ListStories';
 
@@ -14,9 +14,11 @@ class UserStories extends Component {
         ADD: 'add',
         storiesList: [],
         showModalUpdate: false,
-        updateStory: {},
+        updateStory: {jiraKey:'',title:'',storyPoint:'',priority:'',storyState:''},
         showModalAdd: false,
-        addedStory: {}
+        addedStory: {},
+        detailsStory: {},
+        showModalDetails: false
     }
 
     componentDidMount(){
@@ -121,9 +123,12 @@ class UserStories extends Component {
           });
     }
 
+    handleShowDetails = (story) => {
+        this.setState({showModalDetails: true, detailsStory: story});
+    }
+
     handleClose = () => {
-        this.setState({ showModalUpdate: false });
-        this.setState({ showModalAdd: false });
+        this.setState({ showModalUpdate: false, showModalAdd: false, showModalDetails: false });
         this.getStories();
     }
     
@@ -132,7 +137,7 @@ class UserStories extends Component {
     }
 
     render() { 
-        const {ADD, storiesList} = this.state;
+        const {ADD, storiesList, showModalDetails, detailsStory} = this.state;
 
         return ( 
             <React.Fragment>
@@ -141,7 +146,7 @@ class UserStories extends Component {
                 <hr/>
                 <Button onClick={() => this.handleShow(ADD)} variant="primary" size="lg" block>Add a story</Button>
                 <StoriesSearchForm handleSearchChange={this.handleSearchChange} />
-                <ListStories storiesList={storiesList} handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
+                <ListStories handleShowDetails={this.handleShowDetails} storiesList={storiesList} handleEdit={this.handleEdit} handleDelete={this.handleDelete} />
                 <StoryModalUpdate updateStory={this.state.updateStory} showModalUpdate={this.state.showModalUpdate}
                     handleSaveEdit={this.handleSaveEdit} handleClose={this.handleClose} 
                     handleOnChangeUpdate={this.handleOnChangeUpdate} 
@@ -149,6 +154,7 @@ class UserStories extends Component {
                 <StoryModalAdd showModalAdd={this.state.showModalAdd} handleSaveAdd={this.handleSaveAdd}
                     handleClose={this.handleClose} handleOnChangeAdd={this.handleOnChangeAdd}
                 />
+                <StoryModalDetails storyObj={detailsStory} showModalDetails={showModalDetails} handleClose={this.handleClose} />
             </React.Fragment>
         );
     }

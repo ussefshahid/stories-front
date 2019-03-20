@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button, Form, InputGroup, Modal} from 'react-bootstrap';
+import {TeamValidation, isValid} from './TeamValidation';
 
 const TeamModalUpdate = (props) => {
     const {UPDATE, updateTeam, showModalUpdate, handleSaveEdit, handleClose, handleOnChangeUpdate} = props;
@@ -20,13 +21,16 @@ const TeamModalUpdate = (props) => {
                             aria-describedby="inputGroupPrepend11"
                             required />
                     </InputGroup>
+                    <InputGroup>
+                        <TeamValidation field="name" value={updateTeam} />
+                    </InputGroup>
                 </Form.Group>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={() => handleClose(UPDATE)}>
                     Close
                 </Button>
-                <Button variant="primary" onClick={() => handleSaveEdit(updateTeam)}>
+                <Button variant="primary" disabled={isValid(updateTeam)} onClick={() => handleSaveEdit(updateTeam)}>
                     Save Changes
                 </Button>
             </Modal.Footer>
@@ -35,7 +39,7 @@ const TeamModalUpdate = (props) => {
 }
 
 const TeamModalAdd = (props) => {
-    const {showModalAdd, handleSaveAdd, handleClose, handleOnChangeAdd} = props;
+    const {showModalAdd, addedTeam, handleSaveAdd, handleClose, handleOnChangeAdd} = props;
 
     return (
         <Modal show={showModalAdd} onHide={handleClose}>
@@ -52,13 +56,17 @@ const TeamModalAdd = (props) => {
                             aria-describedby="inputGroupPrepend2"
                             required />
                     </InputGroup>
+
+                    <InputGroup>
+                        <TeamValidation field="name" value={addedTeam} />
+                    </InputGroup>
                 </Form.Group>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
                     Close
                 </Button>
-                <Button variant="primary" onClick={handleSaveAdd}>
+                <Button variant="primary" disabled={isValid(addedTeam)} onClick={handleSaveAdd}>
                     Save
                 </Button>
             </Modal.Footer>

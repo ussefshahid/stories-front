@@ -11,7 +11,7 @@ const TeamCard = (props) => {
                 <Card.Title className="centerIt cardTitle"> {team.name}</Card.Title>
                 <hr/>
                 <Button onClick={() => handleEdit(team)} variant="outline-primary">Edit</Button>
-                <Button className="floatRight" style={{float: 'right'}} onClick={() => handleDelete(team.id)} variant="outline-danger">Delete</Button>
+                <Button className="floatRight" onClick={() => handleDelete(team.id)} variant="outline-danger">Delete</Button>
             </Card.Body>
         </Card>
     );

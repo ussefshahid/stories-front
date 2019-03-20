@@ -5,7 +5,7 @@ const RoleCard = (props) => {
     const {role, handleDelete, handleEdit} = props;
 
     return (
-        <Card bg="light" key={role.id} style={{ width: '18rem' }} className="m-2">
+        <Card bg="light" style={{ width: '18rem' }} className="m-2">
             <Card.Header><label className="floatRight">ID° {role.id}</label></Card.Header>
             <Card.Body>
                 <Card.Title className="centerIt cardTitle"> {role.name}</Card.Title>

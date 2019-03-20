@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button, Form, InputGroup, Modal} from 'react-bootstrap';
+import {RoleValidation, isValid} from './RoleValidation';
 
 const RoleModalUpdate = (props) => {
     const {UPDATE, updateRole, showModalUpdate, handleSaveEdit, handleClose, handleOnChangeUpdate} = props;
@@ -20,13 +21,16 @@ const RoleModalUpdate = (props) => {
                             aria-describedby="inputGroupPrepend11"
                             required />
                     </InputGroup>
+                    <InputGroup>
+                        <RoleValidation field="name" value={updateRole} />
+                    </InputGroup>
                 </Form.Group>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={() => handleClose(UPDATE)}>
+                <Button variant="secondary" onClick={handleClose}>
                     Close
                 </Button>
-                <Button variant="primary" onClick={() => handleSaveEdit(updateRole)}>
+                <Button variant="primary" disabled={isValid(updateRole)} onClick={() => handleSaveEdit(updateRole)}>
                     Save Changes
                 </Button>
             </Modal.Footer>
@@ -35,7 +39,7 @@ const RoleModalUpdate = (props) => {
 }
 
 const RoleModalAdd = (props) => {
-    const {showModalAdd, handleSaveAdd, handleClose, handleOnChangeAdd} = props;
+    const {showModalAdd, addedRole, handleSaveAdd, handleClose, handleOnChangeAdd} = props;
 
     return (
         <Modal show={showModalAdd} onHide={handleClose}>
@@ -52,13 +56,16 @@ const RoleModalAdd = (props) => {
                             aria-describedby="inputGroupPrepend2"
                             required />
                     </InputGroup>
+                    <InputGroup>
+                        <RoleValidation field="name" value={addedRole} />
+                    </InputGroup>
                 </Form.Group>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
                     Close
                 </Button>
-                <Button variant="primary" onClick={handleSaveAdd}>
+                <Button variant="primary" disabled={isValid(addedRole)} onClick={handleSaveAdd}>
                     Save
                 </Button>
             </Modal.Footer>

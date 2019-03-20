@@ -14,9 +14,13 @@ class Roles extends Component {
         ADD: 'add',
         rolesList: [],
         showModalUpdate: false,
-        updateRoleObj: {},
+        updateRoleObj: {name: ''},
         showModalAdd: false,
-        addedRole: {}
+        addedRole: {name: ''}
+    }
+
+    componentDidMount(){
+        this.getRoles();
     }
 
     getRoles(){
@@ -61,13 +65,13 @@ class Roles extends Component {
         }
     }
 
-    componentDidMount(){
-        this.getRoles();
-    }
-
     handleEdit = (role) => {
         this.setState({updateRoleObj: role});
-        this.handleShow(this.state.UPDATE);
+        this.handleShow(this.state.UPDATE, role);
+    }
+
+    handleShow = (action, role) => {
+        (action === 'update')? this.setState({ showModalUpdate: true, updateRoleObj: role }): this.setState({ showModalAdd: true });
     }
 
     handleSaveEdit = () => {
@@ -108,14 +112,10 @@ class Roles extends Component {
     }
 
     handleClose = () => {
-        this.setState({ showModalUpdate: false });
-        this.setState({ showModalAdd: false });
+        this.setState({ showModalUpdate: false,showModalAdd: false });
         this.getRoles();
     }
     
-    handleShow = (action) => {
-        (action === 'update')? this.setState({ showModalUpdate: true }): this.setState({ showModalAdd: true });
-    }
 
     handleOnChangeAdd = (event) =>{
         const {addedRole} = this.state;
@@ -148,6 +148,7 @@ class Roles extends Component {
                     handleSaveEdit={this.handleSaveEdit} UPDATE={UPDATE}
                 />
                 <RoleModalAdd 
+                    addedRole={this.state.addedRole}
                     showModalAdd={this.state.showModalAdd} handleClose={this.handleClose}
                     handleOnChangeAdd={this.handleOnChangeAdd} 
                     handleSaveAdd={this.handleSaveAdd} ADD={ADD}
