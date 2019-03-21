@@ -11,7 +11,7 @@ const StoryCard = (props) => {
                 <Card.Title className="centerIt cardTitle"> {story.title}</Card.Title>
                 <hr/>
                 <Button onClick={() => handleEdit(story)} variant="outline-primary">Edit</Button>
-                <Button onClick={() => handleShowDetails(story)} style={{marginLeft: 24}} variant="outline-warning">Details</Button>
+                <Button className="btnCenter" onClick={() => handleShowDetails(story)} variant="outline-warning">Details</Button>
                 <Button className="floatRight" onClick={() => handleDelete(story.jiraKey)} variant="outline-danger">Delete</Button>
             </Card.Body>
         </Card>

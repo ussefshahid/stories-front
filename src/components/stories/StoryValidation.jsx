@@ -29,7 +29,7 @@ const StoryValidation = (props) => {
     const {field, value} = props;
 
     return (
-        <label className="text-danger">{errorMessage(field, value)}</label>
+        <label className="text">{errorMessage(field, value)}</label>
     );
 }
 

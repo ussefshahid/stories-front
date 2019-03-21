@@ -16,7 +16,7 @@ class UserStories extends Component {
         showModalUpdate: false,
         updateStory: {jiraKey:'',title:'',storyPoint:'',priority:'',storyState:''},
         showModalAdd: false,
-        addedStory: {},
+        addedStory: {jiraKey:'',title:'',storyPoint:'',priority:'',storyState:''},
         detailsStory: {},
         showModalDetails: false
     }
@@ -137,7 +137,7 @@ class UserStories extends Component {
     }
 
     render() { 
-        const {ADD, storiesList, showModalDetails, detailsStory} = this.state;
+        const {ADD, storiesList, showModalDetails, detailsStory, addedStory} = this.state;
 
         return ( 
             <React.Fragment>
@@ -152,7 +152,7 @@ class UserStories extends Component {
                     handleOnChangeUpdate={this.handleOnChangeUpdate} 
                 />
                 <StoryModalAdd showModalAdd={this.state.showModalAdd} handleSaveAdd={this.handleSaveAdd}
-                    handleClose={this.handleClose} handleOnChangeAdd={this.handleOnChangeAdd}
+                    handleClose={this.handleClose} handleOnChangeAdd={this.handleOnChangeAdd} addedStory={addedStory}
                 />
                 <StoryModalDetails storyObj={detailsStory} showModalDetails={showModalDetails} handleClose={this.handleClose} />
             </React.Fragment>

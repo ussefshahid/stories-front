@@ -66,7 +66,7 @@ const StoryModalUpdate = (props) => {
 }
 
 const StoryModalAdd = (props) => {
-    const {showModalAdd, handleSaveAdd, handleClose, handleOnChangeAdd} = props;
+    const {showModalAdd, handleSaveAdd, handleClose, handleOnChangeAdd, addedStory} = props;
 
     return (
         <Modal size="lg" show={showModalAdd} onHide={handleClose}>
@@ -78,26 +78,41 @@ const StoryModalAdd = (props) => {
                 <Form.Group md="4" className="m-3">
                     <Form.Label>Jira KEY: </Form.Label>
                     <Form.Control type="number" name="jiraKey" onChange={handleOnChangeAdd} required/>
+                    <InputGroup>
+                        <StoryValidation field="jiraKey" value={addedStory} />
+                    </InputGroup>
                 </Form.Group>
 
                 <Form.Group md="4" className="m-3">
                     <Form.Label>Story title: </Form.Label>
                     <Form.Control type="text" name="title" onChange={handleOnChangeAdd} required/>
+                    <InputGroup>
+                        <StoryValidation field="title" value={addedStory} />
+                    </InputGroup>
                 </Form.Group>
 
                 <Form.Group md="4" className="m-3">
                     <Form.Label>Story point: </Form.Label>
                     <Form.Control type="number" name="storyPoint" onChange={handleOnChangeAdd} required/>
+                    <InputGroup>
+                        <StoryValidation field="storyPoint" value={addedStory} />
+                    </InputGroup>
                 </Form.Group>
 
                 <Form.Group md="4" className="m-3">
                     <Form.Label>Story priority: </Form.Label>
                     <Form.Control type="number" name="priority" onChange={handleOnChangeAdd} required/>
+                    <InputGroup>
+                        <StoryValidation field="priority" value={addedStory} />
+                    </InputGroup>
                 </Form.Group>
 
                 <Form.Group md="4" className="m-3">
                     <Form.Label>Story state: </Form.Label>
                     <Form.Control type="text" name="storyState" onChange={handleOnChangeAdd} required/>
+                    <InputGroup>
+                        <StoryValidation field="storyState" value={addedStory} />
+                    </InputGroup>
                 </Form.Group>
 
             </Modal.Body>
@@ -106,7 +121,7 @@ const StoryModalAdd = (props) => {
                 <Button variant="secondary" onClick={handleClose}>
                     Close
                 </Button>
-                <Button variant="primary" onClick={handleSaveAdd}>
+                <Button disabled={isValid(addedStory)} variant="primary" onClick={handleSaveAdd}>
                     Save
                 </Button>
             </Modal.Footer>
